@@ -67,10 +67,9 @@ Image (224×224) → ViT-Base (12 blocks) → MLP Bridge (768→768) → GPT-2 (
 | Document | Description |
 |----------|-------------|
 | [ARCHITECTURE.md](docs/ARCHITECTURE.md) | Full system architecture (export to PDF) |
-| [docs/assets/crossmodal.pdf](docs/assets/crossmodal.pdf) | Cross-modal data flow |
-| [docs/assets/archi1.pdf](docs/assets/archi1.pdf) | ViT-GPT2 architecture (project report) |
-
-> 📄 **Export to PDF**: Use `pandoc docs/ARCHITECTURE.md -o docs/assets/architecture.pdf` or your preferred Markdown→PDF tool.
+| [crossmodal.pdf](crossmodal.pdf) | Cross-modal data flow |
+| [Architecture diagram 1.pdf](Architecture%20diagram%201.pdf) | ViT-GPT2 architecture diagram |
+| [Comp_646_Vit_Gpt2_Final_Report.pdf](Comp_646_Vit_Gpt2_Final_Report.pdf) | Final project report |
 
 ---
 
@@ -127,7 +126,7 @@ Upload/URL → FastAPI → Image bytes → ViT + Bridge → GPT-2 beam decode �
 |----------|------|-------------|
 | **Architecture** | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | System design, components, data flow |
 | **Project Report** | [docs/PROJECT_REPORT.md](docs/PROJECT_REPORT.md) | Methodology, results, ablations |
-| **PDF Report** | [docs/assets/Project_Report.pdf](docs/assets/Project_Report.pdf) | Final compiled LaTeX report |
+| **PDF Report** | [Comp_646_Vit_Gpt2_Final_Report.pdf](Comp_646_Vit_Gpt2_Final_Report.pdf) | Final compiled LaTeX report |
 
 ### Key Findings
 
@@ -137,14 +136,14 @@ Fine-tuned model improves BLEU-4 (+0.041), ROUGE-L (+0.054), CIDEr (+0.192), and
 
 | Image | Description |
 |-------|-------------|
-| ![Metric Lift](docs/assets/fine1.jpg) | Metric lift & brevity improvement |
-| ![Core Comparison](docs/assets/fine2.jpg) | Final model vs. baseline metrics |
+| ![Metric Lift](fine1.jpg) | Metric lift & brevity improvement |
+| ![Core Comparison](fine2.jpg) | Final model vs. baseline metrics |
 
 #### Beam Size Study
 
 | Fluency (log-prob) | Diversity (D-1/D-2) | CIDEr | ROUGE-L |
 |:------------------:|:--------------------:|:-----:|:-------:|
-| ![beam1](docs/assets/beam1.png) | ![beam2](docs/assets/beam2.png) | ![beam3](docs/assets/beam3.png) | ![beam4](docs/assets/beam4.png) |
+| ![beam1](beam1.png) | ![beam2](beam2.png) | ![beam3](beam3.png) | ![beam4](beam4.png) |
 
 > Beam = 1 gives best overlap metrics. Diversity improves at beam = 5. Larger beams tend to collapse into generic language.
 
@@ -160,17 +159,15 @@ Fine-tuned model improves BLEU-4 (+0.041), ROUGE-L (+0.054), CIDEr (+0.192), and
 
 > Removing cross-attention results in severe grounding loss. Captions default to memorized generic patterns.
 
-![Cross vs No-Cross](docs/assets/cross.jpg)
+![Cross vs No-Cross](cross.jpg)
 
 #### Qualitative Examples
 
 | Image | With Cross-Attention | Without Cross-Attention |
 |-------|----------------------|-------------------------|
-| ![img1](docs/assets/img1.jpg) | A yellow dog runs through grass with its tongue hanging out. | A man and a woman sit on a bench in front of a building. |
-| ![img2](docs/assets/img2.jpg) | A girl in a pink hat takes a picture with a digital camera. | A man and a woman sit on a bench in front of a building. |
-| ![img3](docs/assets/img3.jpg) | A person is standing in front of a golden retriever in a field. | A man and a woman sit on a bench in front of a building. |
-
-> Add these images to `docs/assets/` (see [docs/assets/README.md](docs/assets/README.md) for the full list).
+| ![img1](img1.jpg) | A yellow dog runs through grass with its tongue hanging out. | A man and a woman sit on a bench in front of a building. |
+| ![img2](img2.jpg) | A girl in a pink hat takes a picture with a digital camera. | A man and a woman sit on a bench in front of a building. |
+| ![img3](img3.jpg) | A person is standing in front of a golden retriever in a field. | A man and a woman sit on a bench in front of a building. |
 
 ---
 
@@ -329,14 +326,14 @@ final_deployment/
 ├── docs/
 │   ├── ARCHITECTURE.md     # System architecture
 │   ├── PROJECT_REPORT.md   # Report summary
-│   └── assets/            # PDFs, PNGs, JPGs
-│       ├── archi1.pdf
-│       ├── crossmodal.pdf
-│       ├── Project_Report.pdf
-│       ├── beam1.png … beam4.png
-│       ├── cross.jpg, fine1.jpg, fine2.jpg
-│       └── img1.jpg … img3.jpg
+│   └── assets/
 ├── models/                 # Local model weights (when INFERENCE_MODE=local)
+├── beam1.png … beam4.png  # Beam size study findings
+├── cross.jpg, fine1.jpg, fine2.jpg
+├── img1.jpg … img3.jpg    # Qualitative examples
+├── crossmodal.pdf         # Cross-modal flow diagram
+├── Architecture diagram 1.pdf
+├── Comp_646_Vit_Gpt2_Final_Report.pdf
 ├── docker-compose.yml
 ├── README.md               # This file
 └── requirements.txt        # Research dependencies
@@ -368,4 +365,4 @@ final_deployment/
 
 ---
 
-**Caption-It** — PhD-level image captioning with cross-modal attention. Built for research and production.
+
